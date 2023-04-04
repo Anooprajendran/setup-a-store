@@ -1,69 +1,63 @@
-$(document).ready(function () {
-  $('.banner-slider').slick({
-    autoplay: true,
-    prevArrow: '<div class="slick-nav prev-arrow"></div>',
-    nextArrow: '<div class="slick-nav next-arrow"></div>',
-    dots: true,
-    autoplaySpeed:3500
+$(document).ready(function(){
+  $('.customer-logos').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: false,
+      autoplaySpeed: 1500,
+      arrows: false,
+      dots: true,
+      pauseOnHover: false,
   });
 
-  $('.best-slider').slick({
-    slidesToShow: 4,
+  $('.review-slider').slick({
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
     autoplaySpeed: 1500,
     arrows: true,
-    dots: true,
-    pauseOnHover: true,
+    dots: false,
+    pauseOnHover: false,
+  });
+
+  $('.slider-for').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    fade: true,
+    asNavFor: '.slider-nav'
+  });
+
+  $('.slider-nav').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: '.slider-for',
+    dots: false,
+    focusOnSelect: true,
+    vertical: true,
     responsive: [{
-        breakpoint: 768,
-        settings: {
-            slidesToShow: 2
-        }
+      breakpoint: 1380,
+      settings: {
+        slidesToShow: 3,
+      }
     },
     {
       breakpoint: 991,
       settings: {
-          slidesToShow: 3
-      },
-  },
-     {
-        breakpoint: 520,
-        settings: {
-            slidesToShow: 1
-        },
-    }]
+        slidesToShow: 4,
+      }
+    },
+    {
+      breakpoint: 767,
+      settings: {
+        slidesToShow: 3,
+      }
+    },]
   });
-});
 
-
-
-
-//
-$('.product-slider').slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  fade: true,
-  asNavFor: '.product-thumb'
-});
-$('.product-thumb').slick({
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  asNavFor: '.product-slider',
-  dots: false,
-  centerMode: false,
-  focusOnSelect: true,
-  responsive: [{
-      breakpoint: 659,
-      settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1
-      }
-  }, {
-      breakpoint: 480,
-      settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-      }
-  }]
+  $('a[data-slide]').click(function(e) {
+    e.preventDefault();
+    var slideno = $(this).data('slide');
+    $('.slider-nav').slick('slickGoTo', slideno - 1);
+  });
+  
 });
